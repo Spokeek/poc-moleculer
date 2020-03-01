@@ -1,5 +1,5 @@
 <template>
-    <div>
-        Connexion
-    </div>
+  <div>
+    Connexion
+  </div>
 </template>

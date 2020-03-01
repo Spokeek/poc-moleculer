@@ -1,5 +1,5 @@
 <template>
-    <div>
-        Inscription
-    </div>
+  <div>
+    Inscription
+  </div>
 </template>
