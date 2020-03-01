@@ -1,0 +1,16 @@
+version: '3'
+services:
+  api:
+    build:
+      context: app/microservices
+      dockerfile: ./Dockerfile
+      args:
+        MICROSERVICE: api
+    ports:
+      - "80:3000"
+  hello:
+    build:
+      context: ./app/microservices
+      dockerfile: ./Dockerfile
+      args:
+        MICROSERVICE: hello
