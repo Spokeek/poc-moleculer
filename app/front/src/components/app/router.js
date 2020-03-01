@@ -1,11 +1,7 @@
 import App from "./App";
 
-const routes = [
-  {
+export default {
     path: "/app",
     name: "App",
     component: App
-  }
-];
-
-export default routes;
+}

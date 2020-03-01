@@ -1,3 +1,5 @@
+const store = require('../store');
+
 module.exports = {
     name: "inscription",
     actions: {
@@ -11,9 +13,16 @@ module.exports = {
 				`,
             },
             handler(ctx) {
-                console.log(`Inscription de ${ctx.params.email}`);
+                const { email, motDePasse } = ctx.params
+                const existingUser = store.find('users', (user) => user.email === email);
+                if (existingUser) {
+                    console.log('user allready exist');
+                    return false
+                }
+                store.push('users', { email, motDePasse });
+                console.log(`Inscription de ${email}`);
                 //TODO Ajouter la mutation pour ajouter la donnée en BDD
-                return false;
+                return true;
             },
         }
     }

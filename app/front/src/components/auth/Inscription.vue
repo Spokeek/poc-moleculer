@@ -1,4 +1,5 @@
 <script>
+//import div from './div';
 import { required, email } from 'vuelidate/lib/validators';
 import gql from 'graphql-tag';
 export default {
@@ -46,7 +47,8 @@ export default {
           },
           update: (store, { data: { inscrire } }) => {
             if (inscrire) {
-              this.$router.push({ to: 'App' });
+              console.log('ok');
+              this.$router.push({ name: 'App' });
             }
           }
         });

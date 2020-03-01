@@ -1,5 +1,6 @@
 <script>
-import { required } from 'vuelidate/lib/validators';
+import { required, email } from 'vuelidate/lib/validators';
+import gql from 'graphql-tag';
 
 export default {
   data: () => ({
@@ -8,7 +9,7 @@ export default {
     motDePasse: ''
   }),
   validations: {
-    email: { required },
+    email: { required, emailFormat: email },
     motDePasse: { required }
   },
   computed: {
@@ -16,6 +17,8 @@ export default {
       let errors = [];
       if (!this.$v.email.$dirty || !this.$v.email.$anyError) return errors;
       if (!this.$v.email.required) errors.push('Un email est obligatoire !');
+      if (!this.$v.email.emailFormat)
+        errors.push('Votre email dois avoir un format valide !');
       return errors;
     },
     motDePasseErrorMessage() {
@@ -30,7 +33,25 @@ export default {
     connecter() {
       this.$v.$touch();
       if (!this.$v.$anyError) {
-        console.log('ok');
+        this.$apollo.mutate({
+          // Query
+          mutation: gql`
+            mutation connexion($email: String!, $motDePasse: String!) {
+              connexion(email: $email, motDePasse: $motDePasse)
+            }
+          `,
+          // Parameters
+          variables: {
+            email: this.email,
+            motDePasse: this.motDePasse
+          },
+          update: (store, { data: { connexion } }) => {
+            if (connexion) {
+              console.log('ok');
+              this.$router.push({ name: 'App' });
+            }
+          }
+        });
       }
     }
   }

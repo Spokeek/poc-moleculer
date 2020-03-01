@@ -1,23 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import AppRouter from './app/router';
-import Inscription from './Inscription';
-import Connexion from './Connexion';
-
 Vue.use(VueRouter);
 
+import AuthRouter from './components/auth/router';
+import AppRouter from './components/app/router';
+
 const routes = [
-    ...AppRouter,
+    AuthRouter,
+    AppRouter,
     {
-        path: '/inscription',
-        name: 'Inscription',
-        component: Inscription
-    },
-    {
-        path: '/connexion',
-        name: 'Connexion',
-        component: Connexion
+        path: '*',
+        redirect: '/auth'
     }
 ];
 
