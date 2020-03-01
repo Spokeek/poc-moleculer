@@ -1,5 +1,7 @@
 const store = require('../store');
 
+const { UserInputError } = require("moleculer-apollo-server");
+
 module.exports = {
     name: "inscription",
     actions: {
@@ -13,15 +15,13 @@ module.exports = {
 				`,
             },
             handler(ctx) {
-                const { email, motDePasse } = ctx.params
+                const { email, motDePasse } = ctx.params;
                 const existingUser = store.find('users', (user) => user.email === email);
                 if (existingUser) {
-                    console.log('user allready exist');
-                    return false
+                    throw new UserInputError(`A user with this email allready exist.`, { invalidArgs: ['email'] });
                 }
                 store.push('users', { email, motDePasse });
                 console.log(`Inscription de ${email}`);
-                //TODO Ajouter la mutation pour ajouter la donnée en BDD
                 return true;
             },
         }

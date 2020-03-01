@@ -1,6 +1,7 @@
 version: '3'
 services:
   api:
+    restart: always
     build:
       context: app/microservices
       dockerfile: ./Dockerfile
@@ -9,6 +10,7 @@ services:
     ports:
       - '4000:3000'
   authentification:
+    restart: always
     build:
       context: ./app/microservices
       dockerfile: ./Dockerfile
@@ -20,3 +22,10 @@ services:
       dockerfile: ./Dockerfile
       args:
         MICROSERVICE: hello
+  user:
+    restart: always
+    build:
+      context: ./app/microservices
+      dockerfile: ./Dockerfile
+      args:
+        MICROSERVICE: user

@@ -1,9 +1,3 @@
-<script>
-export default {
-  props: {}
-};
-</script>
-
 <template>
   <div>
     <h2>Profil</h2>

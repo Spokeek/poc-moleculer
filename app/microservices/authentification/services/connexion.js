@@ -1,5 +1,7 @@
 const store = require('../store');
 
+const { UserInputError } = require("moleculer-apollo-server");
+
 module.exports = {
     name: "connexion",
     actions: {
@@ -16,11 +18,9 @@ module.exports = {
                 const { email, motDePasse } = ctx.params;
                 const user = store.find('users', (user) => user.email === email && user.motDePasse === motDePasse);
                 if (!user) {
-                    console.log('user not found');
-                    return false;
+                    throw new UserInputError(`The user does not exist.`, { invalidArgs: ['email'] });
                 }
-                console.log(`Connexion de ${ctx.params.email}`);
-                //TODO Ajouter query pour prendre la donnée en BDD
+                console.log(`Connexion de ${email}`);
                 return true;
             },
         }
