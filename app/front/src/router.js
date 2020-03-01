@@ -1,9 +1,9 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 import AppRouter from './app/router';
-import Inscription from './Inscription'
-import Connexion from './Connexion'
+import Inscription from './Inscription';
+import Connexion from './Connexion';
 
 Vue.use(VueRouter);
 
@@ -22,7 +22,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-    mode: "history",
+    mode: 'history',
     base: process.env.BASE_URL,
     routes
 });

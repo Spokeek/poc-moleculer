@@ -1,11 +1,11 @@
 <template>
   <div id="root">
-    <div>
-      <router-link to="Connexion">Connexion</router-link>
-    </div>
-    <div>
-      <router-link to="Inscription">Inscription</router-link>
-    </div>
+    <v-toolbar dense>
+      <v-toolbar-title>Poc Moleculer</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn to="Connexion">Connexion</v-btn>
+      <v-btn to="Inscription">Inscription</v-btn>
+    </v-toolbar>
     <router-view></router-view>
   </div>
 </template>
