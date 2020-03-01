@@ -7,7 +7,13 @@ services:
       args:
         MICROSERVICE: api
     ports:
-      - "80:3000"
+      - '4000:3000'
+  authentification:
+    build:
+      context: ./app/microservices
+      dockerfile: ./Dockerfile
+      args:
+        MICROSERVICE: authentification
   hello:
     build:
       context: ./app/microservices
